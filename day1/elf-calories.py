@@ -1,5 +1,4 @@
 def read_input(filename):
-
     lines = []
     with open(filename) as file:
         temp_list =[]
@@ -10,15 +9,14 @@ def read_input(filename):
             else:
                 lines.append(temp_list.copy())
                 temp_list.clear()
-    
     return lines
+
 
 def sum_lists(elves):
     sum_list =[]
     for elf in elves:
         elf = list(map(int, elf))
         sum_list.append(sum(elf))
-    
     return sum_list
 
 
