@@ -34,10 +34,9 @@ def move_multi(ins):
         crates = int(moves[0])
         start = moves[1]
         finish = moves[2]
-        items_to_move = stacks[start][-crates:]
-        for item in items_to_move:
-            stacks[finish].append(item)
-            stacks[start].remove(item)
+        #items_to_move = stacks[start][-crates:]
+        stacks[finish].extend(stacks[start][-crates:])
+        stacks[start] = stacks[start][:-crates]
 
 def read_tops():
     temp_list = []
