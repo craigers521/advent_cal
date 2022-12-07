@@ -1,7 +1,3 @@
-#import pydash
-#import json
-
-fs = {}
 path = []
 dirsize = {}
 
@@ -28,29 +24,19 @@ def mkfs(sdout):
             if file[0] == "dir":
                 continue
             else:
-                #item = {file[1]:int(file[0])}
                 update_dirsize(int(file[0]))
-                #update_fs(item)
     pass
-
-#def update_fs(item):
-#    #sep = "."
-#    #dp = sep.join(path)
-#    old_dict = pydash.get(fs, path)
-#    temp_dict = {'temp_key': {}}
-#    if old_dict is not None:
-#        temp_dict = {'temp_key': old_dict }
-#    temp_dict['temp_key'].update(item)
-#    pydash.update(fs, path, temp_dict['temp_key'])
-#    pass
 
 
 def update_dirsize(size):
-    for i in range(0,len(path)):
-        if path[i] in dirsize:
-            dirsize[path[i]] = dirsize[path[i]]+size
+    local_path = path.copy()
+    for i in range(0,len(local_path)):
+        abs = ''.join(local_path)
+        if abs in dirsize:
+            dirsize[abs] = dirsize[abs]+size
         else:
-            dirsize[path[i]] = size
+            dirsize[abs] = size
+        local_path.pop()
     pass
 
 
@@ -62,12 +48,19 @@ def sumdirs(maxsize):
     return dirsum
 
 
+def find_delete_dir(total_d, req_free):
+    total_used = dirsize['/']
+    total_free = total_d - total_used
+    del_size = min([dirsize[k] for k in dirsize if dirsize[k]+total_free >= req_free])
+    return del_size
+
 def main():
     sdout = read_input('input.txt')
     mkfs(sdout)
-    #print(json.dumps(fs, indent=4))
     dirsum = sumdirs(100000)
     print(dirsum)
+    del_dir = find_delete_dir(70000000, 30000000)
+    print(del_dir)
 
 if __name__ == "__main__":
     main()
