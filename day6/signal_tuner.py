@@ -9,10 +9,10 @@ def find_buff_start(sig, offset):
     while True:
         temp_set = set(sig[idx-offset:idx])
         if len(temp_set) == offset:
-            break
+            return idx
         else:
             idx += 1
-    return idx
+
 
 def main():
     sig = read_input('input.txt')
