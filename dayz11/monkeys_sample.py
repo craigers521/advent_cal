@@ -74,8 +74,10 @@ def main():
     business(20)
     print_monkeys()
     activity = find_active()
-    top2 = find_top_two(activity)
-    print(top2[0]*top2[1])
+    #top2 = find_top_two(activity)
+    #print(top2[0]*top2[1])
+    activity.sort()
+    print(activity[-1]*activity[-2])
 
 
 if __name__ == "__main__":
