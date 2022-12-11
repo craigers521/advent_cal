@@ -6,10 +6,9 @@ def read_input(filename):
     return lines
 
 
-
 def main():
     moves = read_input('sample.txt')
-    print(moves[3][0])
+    print(moves)
 
 if __name__ == "__main__":
     main()
