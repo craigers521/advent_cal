@@ -11,7 +11,7 @@ day 2:
 - provide a second position argument to `dict.get(keynamevar, default)` to return a default value if key doesnt exist
 - also can use a defaultdict from collections: `from collections import default dict`, which helps you deal with missing keys or assign default values to dict
 - more useful collections: counter - count unique elements, can be compared
-- all function returns true if all evaluations are true, boolean values can be used in math (false=0, true=1)
+- `all()` function returns true if all evaluations are true, boolean values can be used in math (false=0, true=1)
 - **list comprehension - use it** any time i am creating an empty list and for looping to append values, just use list comprehension
 
 
