@@ -14,7 +14,8 @@ day 2:
 - `all()` function returns true if all evaluations are true, boolean values can be used in math (false=0, true=1)
 - **list comprehension - use it** any time i am creating an empty list and for looping to append values, just use list comprehension
 
-
+day 3:
+- back to the complex numbers to model x,y grid, tricks include nested enumerate for easy x,y coords and mapping of complex class to single letter name for easy referencing
 ------- 
 
 
@@ -25,6 +26,11 @@ day 1:
 
 day 2: 
 - yeah ok just watch this jonathonpaulson guy 
-- https://github.com/casellimarco/raoc/blob/main/2023/q2/main.py using counters
+- https://github.com/casellimarco/raoc/blob/main/2023/q2/main.py using counters  
+
+day 3:
+- using complex number grid https://www.youtube.com/watch?v=xmfHyglUV1Q
+
+
 ----  
 
