@@ -15,7 +15,11 @@ day 2:
 - **list comprehension - use it** any time i am creating an empty list and for looping to append values, just use list comprehension
 
 day 3:
-- back to the complex numbers to model x,y grid, tricks include nested enumerate for easy x,y coords and mapping of complex class to single letter name for easy referencing
+- back to the complex numbers to model x,y grid, tricks include nested enumerate for easy x,y coords and mapping of complex class to single letter name for easy referencing  
+
+day 4: 
+- rather than compare one list to values in a number list with a for loop, make each a set and intersection (`&`) the sets
+- optimization: dont make copies and compare all copies, if you know that its going to be the same result, just add that result for x copies
 ------- 
 
 
