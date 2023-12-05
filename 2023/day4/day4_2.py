@@ -27,6 +27,7 @@ def listcleanup(numlist):
     return temp
     
 
+
 def findwins(cards, wins):
     points = 0
     for i,card in enumerate(cards):
@@ -37,6 +38,7 @@ def findwins(cards, wins):
         if counter > 0:
             points += 2**(counter-1)
     return points
+
 
 def make_copies(cardlist,winlist):
     counter = 0
@@ -50,7 +52,7 @@ def make_copies(cardlist,winlist):
     return counter 
     
 
-                                                     
+
 def findmatches(card, win):
     counter = 0
     for num in card:
@@ -58,10 +60,10 @@ def findmatches(card, win):
             counter += 1
     return counter
 
+
 def main():
     lines = read_input("input.txt")
     cardlist,winlist = make_cards(lines)
-    #p1 = findwins(cardlist,winlist)
     p2 = make_copies(cardlist,winlist)
     print(p2)
     
