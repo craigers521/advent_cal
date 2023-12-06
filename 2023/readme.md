@@ -20,6 +20,18 @@ day 3:
 day 4: 
 - rather than compare one list to values in a number list with a for loop, make each a set and intersection (`&`) the sets
 - optimization: dont make copies and compare all copies, if you know that its going to be the same result, just add that result for x copies
+
+day 5:
+- generally broke me on part 2... some tricks tho
+- unpacking multiple inputs into a single var: `thing, *stuff = input.split('wtvr')`
+- use map to call something on everything in a list, handy for converting lists datatypes `list(map(int, thing.split()))`
+- class method `__repr__` for friendly troubleshooting of class objects with nice data  
+
+day 6: 
+- map, filter and reduce just for one-liners and getting fancy with lambdas: https://stackabuse.com/map-filter-and-reduce-in-python-with-examples/
+- the "right" approach is to use the quadratic formula, brute force works tho
+
+
 ------- 
 
 
@@ -35,6 +47,9 @@ day 2:
 day 3:
 - using complex number grid https://www.youtube.com/watch?v=xmfHyglUV1Q
 
+day 5: johnny p again and been liking [this guy](https://www.youtube.com/watch?v=b8ka6eZ4Vbk&t=11s)
 
+day 6:
+- quad formula walkthru: https://github.com/mebeim/aoc/blob/master/2023/README.md#day-6---wait-for-it 
 ----  
 
