@@ -31,6 +31,12 @@ day 6:
 - map, filter and reduce just for one-liners and getting fancy with lambdas: https://stackabuse.com/map-filter-and-reduce-in-python-with-examples/
 - the "right" approach is to use the quadratic formula, brute force works tho
 
+day 7: 
+- follow an assertion up with an f-string for easy troubleshooting without a bunch of prints:  `assert (test[1] > test[0]), f'{test}'`
+- collections Counter builds a dict with counts instead of you having to do it with defaultdict and loop
+- use ord to flip string char to ascii value and then ord to flip it back for easy comparisons of non-integer string values or double-digit values `hand.replace('K',chr(ord('9')+4))`
+
+
 
 ------- 
 
