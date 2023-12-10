@@ -6,7 +6,7 @@ ptypes = {
     "J": [P(0,-1), P(-1,0)], #up or left
     "7": [P(0,1), P(-1,0)], #down or left
     "F": [P(0,1), P(1,0)], #down or right
-    "S": [P(0,1), P(1,0)] # change S pipe to match behavior
+    "S": [P(0,-1), P(0,1)] # change S pipe to match behavior
 }
 
 def char_replace(input):
@@ -69,7 +69,8 @@ def in_poly(ploop, grid):
     tiles = 0
     for point in grid:
         p = grid[point]
-        if grid[point] == '.':
+        #if grid[point] == '.':
+        if point not in ploop:
             if ray_cast(point,ploop,grid)%2 == 1:
                 tiles += 1
     return tiles
@@ -81,7 +82,7 @@ def ray_cast(point,ploop,grid):
     while pos in grid:
         char = grid[pos]
         if pos in ploop:
-            if grid[pos] in "|JL":
+            if grid[pos] in "|JLS":
                 edges += 1
         pos = pos+P(1,0)
     return edges
@@ -89,7 +90,7 @@ def ray_cast(point,ploop,grid):
 
 
 def main():
-    lines = read_input("sampleD.txt")
+    lines = read_input("input.txt")
     grid = make_grid(lines)
     ploop = find_loop(grid)
     print(len(ploop)//2)
