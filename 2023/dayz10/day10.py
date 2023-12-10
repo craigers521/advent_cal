@@ -61,7 +61,7 @@ def print_path(ploop, grid):
           print("\n")
         if pos in ploop:
             char = char_replace(grid[pos])
-            print(char, end ='')
+            print(char, end='')
         else: print('.', end='')
         
 
@@ -82,7 +82,7 @@ def ray_cast(point,ploop,grid):
     while pos in grid:
         char = grid[pos]
         if pos in ploop:
-            if grid[pos] in "|JLS":
+            if grid[pos] in "|JLS": #only include S here if it exits up
                 edges += 1
         pos = pos+P(1,0)
     return edges
