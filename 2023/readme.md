@@ -36,6 +36,15 @@ day 7:
 - collections Counter builds a dict with counts instead of you having to do it with defaultdict and loop
 - use ord to flip string char to ascii value and then ord to flip it back for easy comparisons of non-integer string values or double-digit values `hand.replace('K',chr(ord('9')+4))`
 
+day 8: 
+- the trick here is about syncing up multiple cycles, rather than continually cycling and checking if everyone is in sync, cycle each once then find the least common multiple of all them.  Python doesnt have a nice way to take lcm of a list of ints so have to write your own
+
+day 10: 
+- pt 1 pretty straighforward using our grid techniques, just exit the pipe legal direction for the pipe you are in but dont go to a pipe you have already been to, until you get back to S
+- pt 2 the trick is imagine your pipe as a polygon, a few tricks to find if point is in polygon:  
+    - raycast any direction, odd number of intersections is in polygon. This is tricky for what i call "edge riding" but if you imagine the pipe zoom in you only cross sections that exit vertically up if casting through "top portion" of square (see pipespace.txt)
+    - use matplotlib.Path and shapely to cheat
+    - take area of polygon using shoelace formula
 
 
 ------- 
