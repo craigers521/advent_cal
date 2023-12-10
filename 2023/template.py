@@ -7,7 +7,7 @@ def read_input(filename):
 
 
 def main():
-    lines = read_input("input.txt")
+    lines = read_input("sample.txt")
     
 
 if __name__ == "__main__":
