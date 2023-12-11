@@ -32,6 +32,7 @@ def expand_space(space,empty):
         xspace.append(galaxy+shift)
     return xspace
 
+
 def find_dist(space):
     p1 = 0
     pairs = [(a,b) for idx,a in enumerate(space) for b in space[idx+1:]]
@@ -39,9 +40,11 @@ def find_dist(space):
         p1 += calc_dist(pair[0], pair[1])
     return p1
 
+
 def calc_dist(a, b):
     diff = a-b
     return int(abs(diff.real)+abs(diff.imag))
+
 
 def main():
     lines = read_input("sample.txt")
