@@ -46,7 +46,10 @@ day 10:
     - use matplotlib.Path and shapely to cheat
     - take area of polygon using shoelace formula
 
-
+day 11:
+- grid approach but interesting technique wasa to calculate my position shift by evaluating if current position was less than one of the shifting row/col.  Because that evals as a Boolen i can sum up the trues to gift the shift amount, this can be multiplied then for larger factor shifts
+- set math again easy for not verifiyin if value in list
+- for complex points distance using only up,down,left,right is calculated using "manhattan distance" aka diff in x + diff in y
 ------- 
 
 
