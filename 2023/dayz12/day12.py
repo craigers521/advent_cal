@@ -26,6 +26,7 @@ def make_perms(springs, conds):
     perm_list = []
     spring_list = []
     springrps = springs.split('.')
+    springrps = [i for i in springrps if i]
     for grp in springrps:
         if '?' in grp:
             perms = list(itertools.product(('#','.'), repeat=grp.count('?')))
@@ -34,12 +35,14 @@ def make_perms(springs, conds):
                 temp_list.append(''.join(perm))
             perm_list.append(temp_list)
         else:
-            perm_list.append(grp)
-    ######## insert working function to concatenate all possible string permuations here
-    # then do some for loop to eval all functions 
-    for somebullshit in listofbullshit:
-        grplngs = list(map(len, springrps))
-        if grplngs == conds:
+            perm_list.append([grp])
+    comboslist = list(itertools.product(*perm_list))
+    allperms = ['.'.join(combo) for combo in comboslist]
+    for perm in allperms:
+        permgrps = perm.split('.')
+        permgrps = [i for i in permgrps if i]
+        permlngs = list(map(len, permgrps))
+        if permlngs == conds:
             ans += 1
     return ans
 
