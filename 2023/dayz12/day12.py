@@ -1,4 +1,7 @@
-import itertools
+#from functools import lru_cache
+from datetime import datetime
+
+cache = {}
 
 def read_input(filename):
     lines = []
@@ -10,47 +13,64 @@ def read_input(filename):
 
 def parse_input(lines):
     records = [[x.split(',') for x in line.split()] for line in lines]
-    for record in records:
-        record[1] = list(map(int,record[1]))
     return records
 
-def find_perms(records):
-    p1 = 0
-    for record in records:
-        springs,conds = record[0][0],record[1]
-        p1+= make_perms(springs,conds)
-    return p1
 
-def make_perms(springs, conds):
-    ans = 0
-    perm_list = []
-    spring_list = []
-    springrps = springs.split('.')
-    springrps = [i for i in springrps if i]
-    for grp in springrps:
-        if '?' in grp:
-            perms = list(itertools.product(('#','.'), repeat=grp.count('?')))
-            temp_list = []
-            for perm in perms:
-                temp_list.append(''.join(perm))
-            perm_list.append(temp_list)
+#@lru_cache
+def get_counts(springs, blocks):
+    if blocks == ():
+        if '#' not in springs:
+            return 1
         else:
-            perm_list.append([grp])
-    comboslist = list(itertools.product(*perm_list))
-    allperms = ['.'.join(combo) for combo in comboslist]
-    for perm in allperms:
-        permgrps = perm.split('.')
-        permgrps = [i for i in permgrps if i]
-        permlngs = list(map(len, permgrps))
-        if permlngs == conds:
-            ans += 1
-    return ans
+            return 0
+    if springs == "":
+        if blocks == ():
+            return 1
+        else:
+            return 0
+
+    key = (springs, blocks)
+    if key in cache:
+        return cache[key]
+    
+    result = 0
+    if springs[0] in '.?':
+        result += get_counts(springs[1:], blocks)
+    if springs[0] in '#?':
+        if valid_block(springs, blocks[0]):
+            result += get_counts(springs[1+blocks[0]:], blocks[1:])
+    
+    cache[key] = result
+    return result
+
+def valid_block(springs,block):
+    if len(springs) < block:
+        return False
+    if '.' in springs[:block]:
+        return False
+    if len(springs) > block and springs[block] == '#':
+        return False
+    return True
 
 
 def main():
-    lines = read_input("sample.txt")
+    lines = read_input("input.txt")
     records = parse_input(lines)
-    p1 = find_perms(records)
+    p1 = 0
+    for record in records:
+        p1 += get_counts(record[0][0], tuple(map(int, record[1])))
+    print(p1)
+    p2 = 0
+    start = datetime.now()
+    for record in records:
+        springs = '?'.join(record[0]*5)
+        blocks = tuple(map(int, record[1]))*5
+        p2 += get_counts(springs, blocks)
+    print(p2)
+    end = datetime.now()
+    td = (end - start).total_seconds() * 10**3
+    print(f"execution time: {td}ms")
+
     
 
 if __name__ == "__main__":

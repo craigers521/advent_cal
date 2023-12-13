@@ -47,9 +47,14 @@ day 10:
     - take area of polygon using shoelace formula
 
 day 11:
-- grid approach but interesting technique wasa to calculate my position shift by evaluating if current position was less than one of the shifting row/col.  Because that evals as a Boolen i can sum up the trues to gift the shift amount, this can be multiplied then for larger factor shifts
-- set math again easy for not verifiyin if value in list
+- grid approach but interesting technique was to calculate my position shift by evaluating if current position was less than one of the shifting row/col.  Because that evals as a Boolen i can sum up the trues to gift the shift amount, this can be multiplied then for larger factor shifts
+- set math again easy for not verifiy in if value in list
 - for complex points distance using only up,down,left,right is calculated using "manhattan distance" aka diff in x + diff in y
+
+day 12:
+- git gud at recursion... 
+- fun technique is to set set a cache dictionary, use function input as unique key and store result for quick lookups later... or just use lru_cache from functools
+
 ------- 
 
 
@@ -69,5 +74,9 @@ day 5: johnny p again and been liking [this guy](https://www.youtube.com/watch?v
 
 day 6:
 - quad formula walkthru: https://github.com/mebeim/aoc/blob/master/2023/README.md#day-6---wait-for-it 
+
+day 12: recursion
+ - https://www.youtube.com/watch?v=g3Ms5e7Jdqo
+ - https://www.youtube.com/watch?v=n-6-J1O1tIU
 ----  
 
