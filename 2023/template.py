@@ -1,8 +1,6 @@
 def read_input(filename):
-    lines = []
     with open(filename) as file:
-        for line in file:
-            lines.append(line.rstrip())
+        lines = [line.rstrip() for line in file]
     return lines
 
 

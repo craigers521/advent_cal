@@ -55,6 +55,9 @@ day 12:
 - git gud at recursion... 
 - fun technique is to set set a cache dictionary, use function input as unique key and store result for quick lookups later... or just use lru_cache from functools
 
+day 13: 
+- adding `[::-1]` reverses a list, but you can also do that on a sliced list like `mylist[:r][::-1]`
+- zip an unpacked list of lists to transpose it (aka rotate 90) like `list(zip(*mylst))`
 ------- 
 
 
