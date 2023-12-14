@@ -30,6 +30,7 @@ day 5:
 day 6: 
 - map, filter and reduce just for one-liners and getting fancy with lambdas: https://stackabuse.com/map-filter-and-reduce-in-python-with-examples/
 - the "right" approach is to use the quadratic formula, brute force works tho
+- `eval()` vs `int()` for string to integer converstion:  https://mhrprogramming.medium.com/issues-in-converting-strings-using-eval-and-int-functions-in-python-programming-3d2e3a6ac573 ( TL;DR is eval works on all kinds of things like floats, expressions, hex, etc but int works on strings with leading zeros)
 
 day 7: 
 - follow an assertion up with an f-string for easy troubleshooting without a bunch of prints:  `assert (test[1] > test[0]), f'{test}'`
