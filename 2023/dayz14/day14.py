@@ -1,4 +1,3 @@
-from collections import defaultdict
 
 P = complex
 north = P(0,-1)
@@ -11,6 +10,7 @@ def read_input(filename):
         lines = [line.rstrip() for line in file]
     return lines
 
+
 def make_grid(lines):
     rows = len(lines)
     cols = len(lines[0])
@@ -20,6 +20,7 @@ def make_grid(lines):
             if val != '.':
                 grid[P(x,y)] = val
     return rows,cols,grid
+
 
 def find_weight(rows,cols,dish):
     move_north(dish,rows,cols)
@@ -41,6 +42,7 @@ def move_north(dish,rows,cols):
             dish[key] = rock
     return
 
+
 def move_west(dish,rows,cols):
     round_rocks = {k:v for (k,v) in dish.items() if dish[k] == 'O'}
     for c in range(cols):
@@ -53,6 +55,7 @@ def move_west(dish,rows,cols):
             key += P(1,0)
             dish[key] = rock
     return
+
 
 def move_south(dish,rows,cols):
     round_rocks = {k:v for (k,v) in dish.items() if dish[k] == 'O'}
@@ -67,6 +70,7 @@ def move_south(dish,rows,cols):
             dish[key] = rock
     return
 
+
 def move_east(dish,rows,cols):
     round_rocks = {k:v for (k,v) in dish.items() if dish[k] == 'O'}
     for c in range(cols,-1,-1):
@@ -79,6 +83,7 @@ def move_east(dish,rows,cols):
             key += P(-1,0)
             dish[key] = rock
     return
+
 
 def calc_load(dish,rows,cols):
     weight = 0
@@ -106,27 +111,31 @@ def print_dish(dish,rows,cols):
         print('\n')
     return
 
-def cycle_dish(rows,cols,dish,cycle):
-    weights = defaultdict(int)
-    while cycle > 0:
-        move_north(dish,rows,cols)
-        #print_dish(dish,rows,cols)
-        move_west(dish,rows,cols)
-        #print_dish(dish,rows,cols)
-        move_south(dish,rows,cols)
-        #print_dish(dish,rows,cols)
-        move_east(dish,rows,cols)
-        #print_dish(dish,rows,cols)
-        test = calc_load(dish,rows,cols)
-        weights[test] += 1
-        #print(f"{200-cycle}: {test}")
-        cycle -=1
-    for key in weights:
-        if weights[key] > 1:
-            print(f"{key} : {weights[key]}")
+
+def cycle_dish(rows,cols,dish):
+    move_north(dish,rows,cols)
+    move_west(dish,rows,cols)
+    move_south(dish,rows,cols)
+    move_east(dish,rows,cols)
     return
-        
-        
+
+
+def run_cycler(rows,cols,dish,cycles):
+    t = 0
+    seen = {}
+    ff = False
+    while t < cycles-1:
+        cycle_dish(rows,cols,dish)
+        t += 1
+        hash = tuple(dish)
+        if not ff and hash in seen:
+            period = t-seen[hash]
+            t += ((cycles-t)//period)*period
+            ff = True
+        seen[hash] = t
+        load = calc_load(dish,rows,cols)
+        print(t, load)
+    return load
 
 
 def main():
@@ -134,9 +143,10 @@ def main():
     rows,cols,dish = make_grid(lines)
     #p1 = find_weight(rows,cols,dish)
     #print(p1)
-    cycle_dish(rows,cols,dish,cycle=1000)
+    cycle_dish(rows,cols,dish)
+    p2 = run_cycler(rows,cols,dish,1000000000)
+    print(p2)
 
-    
 
 if __name__ == "__main__":
     main()
