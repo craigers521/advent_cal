@@ -59,6 +59,13 @@ day 12:
 day 13: 
 - adding `[::-1]` reverses a list, but you can also do that on a sliced list like `mylist[:r][::-1]`
 - zip an unpacked list of lists to transpose it (aka rotate 90) like `list(zip(*mylst))`
+
+day 14: 
+- i could have made this a lot easier by just rotating the grid and then i would always "roll" the same direction
+- another handy trick i saw was to split strings on '#', sort them, then rejoin on '#', this "rolls" by moving all rocks to the left
+
+day 15:
+- i didnt implement this but another handy module from collections is the "OrderedDict"... its a dict that maintains key order for insertion/deletion but still lets you update in values without changing position
 ------- 
 
 
