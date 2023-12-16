@@ -66,6 +66,9 @@ day 14:
 
 day 15:
 - i didnt implement this but another handy module from collections is the "OrderedDict"... its a dict that maintains key order for insertion/deletion but still lets you update in values without changing position
+
+day 16:
+- set operations on a set produces a new set... so you need to do things like `set |= otherset` or just `set.update(otherset)`, if you just `set | otherset` the resultant new set goes into the ether
 ------- 
 
 
