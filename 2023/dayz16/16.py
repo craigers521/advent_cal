@@ -1,3 +1,5 @@
+from datetime import datetime
+
 P = complex
 
 class Beam:
@@ -144,9 +146,13 @@ def print_grid(grid):
 def main():
     lines = read_input("input.txt")
     rows,cols,grid = make_grid(lines)
+    start = datetime.now()
     nrg = fire_beam(grid.copy(), Beam(P(0,0), P(1,0)))
     p1 = len(nrg)
-    print(p1)
+    end = datetime.now()
+    td = (end - start).total_seconds() * 10**3
+    print(f"P1: {p1} Execution time: {td}ms")
+    start = datetime.now()
     p2 = set()
     for x in range(cols):
         p2.add(len(fire_beam(grid.copy(), Beam(P(x,0), P(0,1)))))
@@ -154,7 +160,9 @@ def main():
     for y in range(rows):
         p2.add(len(fire_beam(grid.copy(), Beam(P(0,y), P(1,0)))))
         p2.add(len(fire_beam(grid.copy(), Beam(P(cols-1,y), P(-1,0)))))
-    print(max(p2))
+    end = datetime.now()
+    td = (end - start).total_seconds() * 10**3
+    print(f"P2: {max(p2)} Execution time: {td}ms")
 
 
     
