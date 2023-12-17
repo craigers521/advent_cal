@@ -69,6 +69,10 @@ day 15:
 
 day 16:
 - set operations on a set produces a new set... so you need to do things like `set |= otherset` or just `set.update(otherset)`, if you just `set | otherset` the resultant new set goes into the ether
+
+day 17:
+- heaps are easy implementation of priority queue, easy for dijkstras
+- you can use a custom class in a heap less if you create a `__lt__` function
 ------- 
 
 
