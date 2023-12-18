@@ -1,4 +1,5 @@
 import heapq
+from collections import defaultdict
 
 P = complex
 UP = P(0,-1)
@@ -35,6 +36,7 @@ def make_grid(lines):
     return grid,end
 
 def find_path(grid,end):
+    shadow_grid = defaultdict(int)
     seen = set()
     Q = [Node(0, P(0,0), DOWN, 0), Node(0, P(0,0), RIGHT, 0)]
     while Q:
@@ -43,8 +45,9 @@ def find_path(grid,end):
             continue
         seen.add(node.key)
         loss,pos,pdir,steps = node.loss, node.pos, node.pdir, node.steps
+        shadow_grid[pos] = pdir
         if pos == end and steps >= 4:
-            return loss
+            return loss,shadow_grid
         if steps < 10 and pos+pdir in grid:
             heapq.heappush(Q, Node(loss+grid[pos+pdir], pos+pdir, pdir, steps+1))
         if pdir in (UP, DOWN) and steps >= 4:
@@ -57,12 +60,28 @@ def find_path(grid,end):
                 heapq.heappush(Q, Node(loss+grid[pos+UP], pos+UP, UP, 1))
             if pos+DOWN in grid:
                 heapq.heappush(Q, Node(loss+grid[pos+DOWN], pos+DOWN, DOWN, 1))
+        #print_seen(shadow_grid)
 
+
+def print_seen(nodes):
+    for y in range(13):
+        for x in range(13):
+            pos = P(x,y)
+            if pos in nodes:
+                if nodes[pos] == UP: print('^', end='')
+                if nodes[pos] == DOWN: print('v', end='')
+                if nodes[pos] == LEFT: print('<', end='')
+                if nodes[pos] == RIGHT: print('>', end='')
+            else: print('O', end='')
+        print('\n')
+    print('_'*30)
+                
 
 def main():
-    lines = read_input("input.txt")
+    lines = read_input("sample.txt")
     grid,end = make_grid(lines)
-    p1 = find_path(grid,end)
+    p1,shadow_grid = find_path(grid,end)
+    print_seen(shadow_grid)
     print(p1)
     
 
