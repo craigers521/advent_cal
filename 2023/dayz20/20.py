@@ -21,7 +21,7 @@ class Module:
             return (None,None,None)
         elif self.mod == '&':
             self.mem[src] = input
-            if all(self.mem.values()) == 1:
+            if all(self.mem.values()):
                 return (self.dst, 0, self.name)
             else:
                 return (self.dst, 1, self.name)
@@ -85,7 +85,7 @@ def pulse(Q, modules, hilo):
 def main():
     lines = read_input("sample2.txt")
     modules = make_mods(lines)
-    hi,lo = propagate(modules, 4)
+    hi,lo = propagate(modules, 1000)
     print(hi*lo)
     
 
