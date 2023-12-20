@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Part:
 
     def __init__(self,x,m,a,s):
@@ -75,13 +77,16 @@ def sum_parts(parts):
 
 
 def main():
+    start = datetime.now()
     rules,parts = read_input("input.txt")
     parts_list = make_parts(parts)
     rules_d = make_rules(rules)
     accepted = eval_parts(parts_list,rules_d)
     p1 = sum_parts(accepted)
+    end = datetime.now()
+    td = (end - start).total_seconds() * 10**3
     print(p1)
-    
+    print(td)
 
 if __name__ == "__main__":
     main()

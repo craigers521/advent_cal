@@ -1,4 +1,4 @@
-from collections import defaultdict, deque
+from collections import deque
 
 class Module:
 
@@ -6,26 +6,26 @@ class Module:
         self.mod = mod
         self.name = name
         self.dst = dst
-        self.state = 0
-        self.mem = defaultdict(int)
+        self.state = 'off'
+        self.mem = {}
 
     def prop(self, input, src):
-        if self.mod == '%' and input == 0:
-            if self.state == 0: 
-                self.state = 1
-                return (self.dst, 1, self.name)
+        if self.mod == '%' and input == 'lo':
+            if self.state == 'off': 
+                self.state = 'on'
+                return (self.dst, 'hi', self.name)
             else: 
-                self.state = 0
-                return (self.dst, 0, self.name)
-        elif self.mod == '%' and input == 1:
-            return (None,None,None)
+                self.state = 'off'
+                return (self.dst, 'lo', self.name)
+        elif self.mod == '%' and input == 'hi':
+            return ([None],None,None)
         elif self.mod == '&':
             self.mem[src] = input
-            if all(self.mem.values()):
-                return (self.dst, 0, self.name)
+            if all(x == 'hi' for x in self.mem.values()):
+                return (self.dst, 'lo', self.name)
             else:
-                return (self.dst, 1, self.name)
-        else:
+                return (self.dst, 'hi', self.name)
+        elif self.mod == 'broadcast':
             return (self.dst, input, self.name)
 
 
@@ -54,39 +54,45 @@ def init_state(modules):
     for name, module in modules.items():
         for d in module.dst:
             if d in modules and modules[d].mod == '&':
-                modules[d].mem[name] = 0
+                modules[d].mem[name] = 'lo'
     return modules
 
 
 def propagate(modules, count):
     modules = init_state(modules)
-    input = 0
+    input = 'lo'
     src = 'button'
     dst = 'broadcaster'
     hilo = [0,0]
-    for _ in range(count):
+    seen = {}
+    for i in range(count):
         Q = deque([(dst, input, src)])
-        hilo = pulse(Q, modules, hilo)
+        hilo = pulse(Q, modules, hilo, i, seen)
+    print(seen) # im gonna bullshit this and use an online LCM calculator i'm done
     return hilo
 
-def pulse(Q, modules, hilo):
+def pulse(Q, modules, hilo, cycle, seen):
     while Q:
         dst,input,src = Q.popleft()
-        if input == 1: hilo[0] += 1
-        else: hilo[1] += 1
-        dst,input,src = modules[dst].prop(input,src)
-        if dst == None or dst[0] not in modules:
+        if dst == 'kh' and input == 'hi':
+            seen[src] = cycle+1
+        #print(f"{src} -{input} -> {dst}")
+        if input == 'hi': hilo[0] += 1
+        elif input == 'lo': hilo[1] += 1
+        if dst is not None and dst in modules:
+            out,inc,org = modules[dst].prop(input,src)
+        else:
             continue
-        for d in dst:
-            Q.append([d,input,src])
+        for o in out:
+            Q.append([o,inc,org])
     return hilo
 
 
 def main():
-    lines = read_input("sample2.txt")
+    lines = read_input("input.txt")
     modules = make_mods(lines)
-    hi,lo = propagate(modules, 1000)
-    print(hi*lo)
+    hilo = propagate(modules, 5000)
+    print(hilo[0]*hilo[1])
     
 
 if __name__ == "__main__":
