@@ -50,8 +50,16 @@ def make_mods(lines):
         mod_dict[name] = Module(mod, name, dst)
     return mod_dict
         
+def init_state(modules):
+    for name, module in modules.items():
+        for d in module.dst:
+            if d in modules and modules[d].mod == '&':
+                modules[d].mem[name] = 0
+    return modules
+
 
 def propagate(modules, count):
+    modules = init_state(modules)
     input = 0
     src = 'button'
     dst = 'broadcaster'
