@@ -9,3 +9,6 @@ day 1:
 day 2: 
 - sorted() function can be used in comparison operators
 - map can be used rather than list comprehension to convert datatypes `list(map(int, line.split()))`
+
+day 3:
+- gotta brush up on that regex
