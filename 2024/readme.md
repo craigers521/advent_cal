@@ -12,3 +12,6 @@ day 2:
 
 day 3:
 - gotta brush up on that regex
+
+day 4:
+- complex number grid i cant quit you.  One of my favorite benefits of parsing a grid into a dictionary with keys as complex numbers, you need to track length and width of the array.  If its a key in your dictionary its within the grid, if its not its not. And checking if adjacency is within the grid boils down to simple addition/subtraction of complex number.  added benefit for part 2, inverse complex number inverts both the real and imag parts.  so complex(1,-1) becomes complex(-1,1) etc. 
