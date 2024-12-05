@@ -11,7 +11,10 @@ day 2:
 - map can be used rather than list comprehension to convert datatypes `list(map(int, line.split()))`
 
 day 3:
-- gotta brush up on that regex
+- gotta brush up on that regex, `r'somestring'` is a raw string allowing you to escape characters and still use regex special chars. aka an actual backslash vs a \d or an actual parenthesis vs a capture group
 
 day 4:
 - complex number grid i cant quit you.  One of my favorite benefits of parsing a grid into a dictionary with keys as complex numbers, you need to track length and width of the array.  If its a key in your dictionary its within the grid, if its not its not. And checking if adjacency is within the grid boils down to simple addition/subtraction of complex number.  added benefit for part 2, inverse complex number inverts both the real and imag parts.  so complex(1,-1) becomes complex(-1,1) etc. 
+
+day 5: 
+- really gross approach to finding bad/good sorted pages but it worked.  Part 2 i stole someones bubble sort algorithm. 
