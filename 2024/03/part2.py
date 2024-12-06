@@ -30,7 +30,7 @@ def parse_lines(lines):
     return total
 
 def main():
-    lines = read_input("input.txt")
+    lines = read_input("sample.txt")
     ans = parse_lines(lines)
     print(ans)
     
