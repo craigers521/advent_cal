@@ -1,4 +1,4 @@
-from collections import Counter
+from tqdm import tqdm 
 
 P = complex
 
@@ -61,8 +61,7 @@ def run_loop(grid, start):
 
 def find_loops(grid, start):
     count = 0
-    for spot in grid:
-        print(count)
+    for spot in tqdm(grid):
         if grid[spot] != '.': continue
         grid[spot] = "#"
         if run_loop(grid, start):
