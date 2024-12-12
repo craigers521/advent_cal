@@ -18,3 +18,9 @@ day 4:
 
 day 5: 
 - really gross approach to finding bad/good sorted pages but it worked.  Part 2 i stole someones bubble sort algorithm. 
+
+day 6: index mod len(list) trick for cycling through list elements
+
+day 7: i'll never really understand recursion
+
+day 8: for part2 i could allow duplicates in the list (or rather inverse pairs) and then just vector out from each number individually but it was such a small dataset i went fast and dirty
