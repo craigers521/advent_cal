@@ -41,22 +41,43 @@ def make_regions(grid):
                 q.append(step)
         master_seen.update(seen)
         area = len(seen)
-        perimeter = find_perimeter(seen, grid)
-        regions.append((area, perimeter))
+        sides = find_sides(seen)
+        regions.append((area, sides))
+        #print(grid[pos], sides, end="\n")
     return regions
 
 
-def find_perimeter(points, grid):
-    perimeter = 0
-    for point in points:
-        for dir in dirs:
-            step = point+dir
-            if step not in grid: 
-                perimeter += 1
-                continue
-            if grid[step] != grid[point]:
-                perimeter += 1
-    return perimeter
+def find_sides(region):
+    NW = P(-1,-1)
+    NE = P(1,-1)
+    SW = P(-1,1)
+    SE = P(1,1)
+    up, down, left, right = (set() for _ in range(4))
+    sides = 0
+    for point in region:
+        if point+U not in region: up.add(point)
+        if point+D not in region: down.add(point)
+        if point+R not in region: right.add(point)
+        if point+L not in region: left.add(point)
+    for point in up:
+        if point in left: 
+            sides += 1
+        if point in right: 
+            sides += 1
+        if point+NW in right and point not in left: 
+            sides += 1
+        if point+NE in left and point not in right: 
+            sides += 1
+    for point in down:
+        if point in left: 
+            sides += 1
+        if point in right: 
+            sides += 1
+        if point+SW in right and point not in left: 
+            sides += 1
+        if point+SE in left and point not in right: 
+            sides += 1
+    return sides
 
 
 def find_price(regions):
